@@ -94,13 +94,18 @@ button { font-family: inherit; cursor: pointer; }
 .logo-text { display: flex; flex-direction: column; font-size: 18px; line-height: 1.1; letter-spacing: .04em; }
 .logo-text em { font-style: normal; font-family: var(--font-body); font-size: 10.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--color-ink-soft); }
 
-.main-nav { display: flex; gap: 32px; }
-.main-nav a { font-size: 15px; font-weight: 600; position: relative; padding: 4px 0; }
+.main-nav { display: flex; flex-wrap: nowrap; gap: 22px; }
+.main-nav a { font-size: 14.5px; font-weight: 600; position: relative; padding: 4px 0; white-space: nowrap; }
 .main-nav a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--color-accent); transition: width var(--transition); }
 .main-nav a:hover::after { width: 100%; }
 
-.header-actions { display: flex; align-items: center; gap: 20px; }
-.header-phone { font-weight: 700; font-size: 15px; display: none; }
+.header-actions { display: flex; align-items: center; gap: 14px; }
+.header-phone { font-weight: 700; font-size: 14px; display: none; white-space: nowrap; }
+
+.lang-switch { display: flex; align-items: center; gap: 2px; background: var(--color-bg-alt); border-radius: 100px; padding: 3px; }
+.lang-link { padding: 6px 11px; font-size: 12px; font-weight: 700; letter-spacing: .03em; border-radius: 100px; color: var(--color-ink-soft); transition: var(--transition); }
+.lang-link:hover { color: var(--color-accent-dark); }
+.lang-link.is-active { background: var(--color-surface); color: var(--color-accent-dark); box-shadow: 0 1px 4px rgba(36,31,26,.12); }
 
 .burger {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
@@ -111,7 +116,7 @@ button { font-family: inherit; cursor: pointer; }
 .burger.is-active span:nth-child(2) { opacity: 0; }
 .burger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (min-width: 861px) { .header-phone { display: inline-flex; } }
+@media (min-width: 1180px) { .header-phone { display: inline-flex; } }
 
 /* ===================== Hero ===================== */
 .hero { position: relative; padding: 190px 0 60px; overflow: hidden; }

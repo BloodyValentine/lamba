@@ -9,29 +9,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Header shadow + scroll progress
   const onScroll = () => {
-    header.classList.toggle('is-scrolled', window.scrollY > 20);
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 20);
 
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
-    progressBar.style.width = progress + '%';
+    if (progressBar) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    }
   };
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
   // Mobile nav toggle
-  burger.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('is-open');
-    burger.classList.toggle('is-active', isOpen);
-    burger.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('is-open');
-      burger.classList.remove('is-active');
-      burger.setAttribute('aria-expanded', 'false');
+  if (burger && nav) {
+    burger.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('is-open');
+      burger.classList.toggle('is-active', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
     });
-  });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        burger.classList.remove('is-active');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
   // Reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
